@@ -66,6 +66,10 @@ section {
 
 .menu .caixa-container .caixa-item img {
     height: 10rem;
+    border-radius: 20px;
+    width: 230px;
+    height: 230px;
+    
 }
 
 .menu .caixa-container .caixa-item h3 {
@@ -84,6 +88,7 @@ section {
     text-decoration: line-through;
     font-size: 1.5rem;
     font-weight: 200;
+   
 }
 
 .menu .caixa-container .caixa-item:hover {
@@ -126,5 +131,7 @@ section {
 
     .menu .caixa-container .caixa-item {
         padding: 2rem;
+
     }
+
 }

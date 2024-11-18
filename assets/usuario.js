@@ -1,6 +1,9 @@
 // Array global para armazenar os usuários (carregado do LocalStorage, se existir)
 const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
+// Lista global para o usuário logado
+let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado')) || null;
+
 // Classe Usuario
 class Usuario {
     constructor(nome, cpf, endereco, email, senha) {
@@ -40,8 +43,6 @@ class Usuario {
         if (this.validarDados()) {
             usuarios.push(this);
             this.atualizarLocalStorage();
-            alert("Usuário cadastrado com sucesso!");
-            console.log(`Nome: ${this.nome}, CPF: ${this.cpf}, Endereço: ${this.endereco}, E-mail: ${this.email}`);
             return true;
         }
         return false;
@@ -68,10 +69,65 @@ class Usuario {
         if (usuario) {
             alert(`Bem-vindo, ${usuario.nome}!`);
             console.log(`Usuário autenticado: Nome: ${usuario.nome}, E-mail: ${usuario.email}`);
+            
+            // Armazenar o usuário logado no LocalStorage
+            usuarioLogado = usuario;
+            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+            
             return usuario;
         } else {
             alert("E-mail ou senha incorretos.");
             return null;
         }
     }
+
+    // Método para criar o usuário admin inicial, se não existir
+    static criarAdminInicial() {
+            const admin = new Usuario("Admin", "12345678901", "Rua A, 123", "Admin@Admin.com", "Admin");
+            admin.salvar();
+            console.log("Admin inicial criado.");
+        
+    }
+
+    static verificarUsuariosAtivos() {
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado')); // Recupera o usuário logado do localStorage
+    
+        if (usuarioLogado) {
+            console.log(`Usuário ativo: ${usuarioLogado.nome}`);
+        } else {
+            console.log("Nenhum usuário está logado.");
+            alert("Nenhum usuário está logado.");
+            window.location.href = "index.html"; // Redireciona para a página de login caso não haja usuário logado
+        }
+    }
+
+    static deslogarUsuario() {
+        if (usuarioLogado) {
+            localStorage.removeItem('usuarioLogado');
+            usuarioLogado = null;
+            alert("Você foi deslogado.");
+            console.log("Usuário deslogado.");
+        } else {
+            alert("Nenhum usuário está logado.");
+            console.log("Não há usuário para deslogar.");
+        }
+    }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Adiciona o evento de clique para o link "Sair"
+    const sairLink = document.getElementById('sair');
+    sairLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Impede o redirecionamento imediato
+        Usuario.deslogarUsuario(); // Chama a função de deslogar
+
+        // Redireciona para a página de login após o logout
+        window.location.href = 'index.html'; // Página de login
+    });
+});
+
+
+
+Usuario.criarAdminInicial();
+
+

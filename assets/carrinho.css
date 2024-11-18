@@ -1,0 +1,245 @@
+:root {
+    --main--color: #d3ad7f;
+    --black: #1313131a;
+    --backgroug-color: #131313;
+    --border: 0.3rem solid rgba(196, 78, 78, 0.3);
+    --white: #fff;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--backgroug-color);
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.navbar a {
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 2rem;
+    color: #f3dada;
+    transition: 0.3s linear;
+}
+
+.navbar a:hover {
+    color: var(--main--color);
+    border-bottom: 0.1rem solid var(--main--color);
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.titulo {
+    font-size: 4rem;
+    color: var(--main--color);
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.titulo span {
+    color: var(--white);
+}
+
+.menu .caixa-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.menu .caixa-container .caixa-item {
+    background-color: #2e2e2e;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    width: calc(33.33% - 1rem);
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.menu .caixa-container .caixa-item:hover {
+    transform: scale(1.05);
+}
+
+.menu .caixa-container .caixa-item img {
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.menu .caixa-container .caixa-item h3 {
+    color: var(--white);
+    font-size: 1.5rem;
+    padding: 1rem 0;
+}
+
+.menu .caixa-container .caixa-item .preco {
+    color: var(--white);
+    font-size: 1.6rem;
+}
+
+.menu .caixa-container .caixa-item span {
+    text-decoration: line-through;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.botao {
+    display: inline-block;
+    background-color: var(--main--color);
+    color: var(--white);
+    border-radius: 1.5rem;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+    margin-top: 2rem;
+}
+
+.botao:hover {
+    background-color: #b58b56;
+}
+
+.carrinho-lateral {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: var(--border);
+    width: 300px;
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    z-index: 10;
+    display: none; /* Inicialmente oculto */
+}
+
+#carrinho-lista {
+    list-style: none; /* Remove os marcadores de lista */
+    padding: 0; /* Remove o padding padrão */
+    margin: 0; /* Remove o margin padrão */
+}
+
+
+
+
+#carrinho-lista li button {
+    margin-left: 10px; /* Espaço entre o botão e o texto */
+    padding: 8px 12px; /* Tamanho confortável para clique */
+    font-size: 1rem;
+}
+
+
+.total {
+    color: white;
+    text-align: start;
+    border: var(--border);
+    padding: 1rem;
+    border-radius: 2rem;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total h1 {
+    font-size: 2rem;
+}
+
+.finalizar-compra {
+    display: block;
+    width: 100%;
+    background-color: var(--main--color);
+    color: var(--white);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: 0.3s;
+}
+
+.finalizar-compra:hover {
+    background-color: #b58b56;
+}
+
+/* Estilo do botão Remover */
+button {
+    background-color: #ff4d4d; /* Cor de fundo vermelha */
+    color: white; /* Cor do texto em branco */
+    border: none; /* Remove a borda padrão */
+    padding: 8px 15px; /* Adiciona padding para o botão */
+    font-size: 14px; /* Ajusta o tamanho da fonte */
+    cursor: pointer; /* Cursor de mãozinha */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease, transform 0.2s; /* Animações suaves */
+    margin-bottom: 20px;;
+    margin-top: 10px;
+    display: flex;
+}
+
+/* Efeito de hover para o botão */
+button:hover {
+    background-color: #e60000; /* Cor de fundo mais escura ao passar o mouse */
+    transform: scale(1.1); /* Aumenta o botão levemente */
+}
+
+/* Efeito de foco no botão */
+button:focus {
+    outline: none; /* Remove a borda padrão */
+    box-shadow: 0 0 5px rgba(255, 77, 77, 0.7); /* Adiciona um destaque leve */
+}
+/* Estilo para os itens do carrinho (opcional) */
+#carrinho-lista li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Adiciona mais espaço entre os itens */
+    padding: 50px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.menu .caixa-container .caixa-item .botao {
+    margin-top: 50px; /* Cria espaço entre os botões e os outros elementos */
+}
+/* Media Queries */
+@media (max-width: 768px) {
+    
+
+    #carrinho-lista li {
+        flex-direction: column; /* Faz os itens ficarem em linha */
+        align-items: flex-start; /* Alinha ao lado esquerdo */
+        padding: 15px;
+    }
+
+    #carrinho-lista li button {
+        margin-top: 10px; /* Espaço entre o texto e o botão */
+        align-self: flex-end; /* Alinha o botão à direita */
+    }
+}
+
+@media (max-width: 480px) {
+    .menu .caixa-container .caixa-item {
+        width: 100%;
+    }
+    
+    .total {
+        flex-direction: column;
+        align-items: center;
+    }
+}

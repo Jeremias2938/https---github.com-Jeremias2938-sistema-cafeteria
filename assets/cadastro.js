@@ -9,6 +9,12 @@ let currentStep = 1;
 
         function nextStep() {
             const steps = document.querySelectorAll('.step');
+            const currentInput = steps[currentStep - 1].querySelector('input');
+                        if (currentInput && currentInput.value.trim() === '') {
+                alert('Por favor, preencha o campo antes de continuar.');
+                return;
+            }
+        
             if (currentStep < steps.length) {
                 currentStep++;
                 updateStep();
