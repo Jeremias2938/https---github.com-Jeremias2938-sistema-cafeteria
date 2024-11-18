@@ -67,6 +67,7 @@ section {
     width: calc(33.33% - 1rem);
     box-sizing: border-box;
     transition: transform 0.3s ease;
+   
 }
 
 .menu .caixa-container .caixa-item:hover {
@@ -78,6 +79,7 @@ section {
     width: 120px;
     object-fit: cover;
     border-radius: 20px;
+   
 }
 
 .menu .caixa-container .caixa-item h3 {
@@ -89,6 +91,7 @@ section {
 .menu .caixa-container .caixa-item .preco {
     color: var(--white);
     font-size: 1.6rem;
+
 }
 
 .menu .caixa-container .caixa-item span {
@@ -233,7 +236,7 @@ button:focus {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 800px) {
     .menu .caixa-container .caixa-item {
         width: 100%;
     }
