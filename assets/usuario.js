@@ -8,7 +8,7 @@ class Usuario {
         this.cpf = cpf;
         this.endereco = endereco;
         this.email = email;
-        this.senha = senha; a
+        this.senha = senha;
     }
 
     validarDados() {
