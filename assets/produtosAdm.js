@@ -45,7 +45,7 @@ const produtos = JSON.parse(localStorage.getItem('produtos')) || [
 
 function carregarProdutos() {
     const container = document.querySelector('.caixa-container');
-    container.innerHTML = "";
+    container.innerHTML = ""; 
 
     produtos.forEach(produto => {
         const item = document.createElement('div');
@@ -56,17 +56,30 @@ function carregarProdutos() {
             <img src="${produto.imagem}" alt="${produto.nome}">
             <h3>${produto.nome}</h3>
             <div class="preco">R$${produto.preco.toFixed(2)} <span>R$${produto.precoAntigo.toFixed(2)}</span></div>
-            <a href="carrinho.html" class="botao">Ver Carrinho</a>
+            <a href="#" class="botao editar" data-id="${produto.id}">Editar</a>
+            <a href="#" class="botao excluir" data-id="${produto.id}">Excluir</a> <!-- Botão para excluir -->
         `;
 
         container.appendChild(item);
     });
+
+    document.querySelectorAll('.editar').forEach(botao => {
+        botao.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = e.target.dataset.id;
+            editarProduto(id);
+        });
+    });
+
+    document.querySelectorAll('.excluir').forEach(botao => {
+        botao.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = e.target.dataset.id;
+            excluirProduto(id);
+            carregarProdutos();
+        });
+    });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    carregarProdutos();
-});
-
 
 function converterImagemBase64(file, callback) {
     const reader = new FileReader();
@@ -90,7 +103,7 @@ function salvarProduto(e) {
         const file = imagemInput.files[0];
         converterImagemBase64(file, function(base64Image) {
             imagemUrl = base64Image;
-            salvarProdutoComImagem(imagemUrl); 
+            salvarProdutoComImagem(imagemUrl);
         });
     } else {
         salvarProdutoComImagem(imagemUrl);
@@ -113,7 +126,7 @@ function salvarProdutoComImagem(imagemUrl) {
             produto.imagem = imagemUrl || produto.imagem;
         }
     } else {
-        
+
         const novoProduto = {
             id: produtos.length + 1,
             nome,
@@ -140,7 +153,6 @@ function editarProduto(id) {
         document.getElementById('precoAntigo').value = produto.precoAntigo;
         document.getElementById('form-produto').dataset.id = produto.id;
 
-
         const imagemPreview = document.getElementById('imagemPreview');
         imagemPreview.src = produto.imagem;
         imagemPreview.style.display = 'block';
@@ -150,9 +162,8 @@ function editarProduto(id) {
 function excluirProduto(id) {
     const confirmacao = confirm("Tem certeza que deseja excluir este produto?");
     if (confirmacao) {
-        
+
         const produtosAtualizados = produtos.filter(p => p.id !== parseInt(id));
-        
         
         localStorage.setItem('produtos', JSON.stringify(produtosAtualizados));
         
@@ -188,66 +199,4 @@ document.querySelectorAll('.excluir').forEach(botao => {
         const id = e.target.dataset.id;
         excluirProduto(id);
     });
-});
-
-
-function filtrarProdutos() {
-    const filtro = document.getElementById('filtro-nome').value.toLowerCase();
-    const produtosFiltrados = produtos.filter(produto => produto.nome.toLowerCase().includes(filtro));
-    carregarProdutosFiltrados(produtosFiltrados);
-}
-
-function carregarProdutosFiltrados(produtosFiltrados) {
-    const container = document.querySelector('.caixa-container');
-    container.innerHTML = "";
-
-    produtosFiltrados.forEach(produto => {
-        const item = document.createElement('div');
-        item.classList.add('caixa-item');
-        item.dataset.id = produto.id;
-
-        item.innerHTML = `
-            <img src="${produto.imagem}" alt="${produto.nome}">
-            <h3>${produto.nome}</h3>
-            <div class="preco">R$${produto.preco.toFixed(2)} <span>R$${produto.precoAntigo.toFixed(2)}</span></div>
-            <a href="carrinho.html" class="botao">Ver Carrinho</a>
-        `;
-
-        container.appendChild(item);
-    });
-
-    
-}
-
-let slideIndex = 0;
-function mostrarSlides() {
-    const slides = document.querySelectorAll('.slide');
-    slides.forEach((slide) => {
-        slide.style.display = 'none';
-    });
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1; }
-    slides[slideIndex - 1].style.display = 'block';
-    setTimeout(mostrarSlides, 3000);
-}
-
-function mudarSlide(n) {
-    const slides = document.querySelectorAll('.slide');
-    slideIndex += n;
-    if (slideIndex > slides.length) { slideIndex = 1; }
-    if (slideIndex < 1) { slideIndex = slides.length; }
-    slides.forEach((slide, index) => {
-        slide.style.display = (index === slideIndex - 1) ? 'block' : 'none';
-    });
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    carregarProdutos();
-    document.getElementById('form-produto').addEventListener('submit', salvarProduto);
-    document.getElementById('filtro-nome').addEventListener('input', filtrarProdutos); 
-    mostrarSlides(); 
-});
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('filtro-nome').addEventListener('input', filtrarProdutos);
 });

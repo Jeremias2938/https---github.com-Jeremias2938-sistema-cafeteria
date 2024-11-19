@@ -24,8 +24,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #4e342e; /* Marrom minimalista */
-    color: #ffffff; /* Texto em branco para contraste */
+    background-color: #4e342e;
+    color: #ffffff; 
 }
 
 .container {
@@ -36,19 +36,19 @@ body {
 }
 
 .form-wrapper {
-    background-color: #110803; /* Fundo do formulário com tom mais claro de marrom */
+    background-color: #110803;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 800px; /* Aumenta a largura máxima em telas maiores */
+    max-width: 800px; 
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
-    color: #ffccbc; /* Cor de destaque */
+    color: #ffccbc;
 }
 
 .steps-wrapper {
@@ -59,13 +59,13 @@ h1 {
     width: 100%;
     box-sizing: border-box;
     padding: 20px;
-    display: none; /* Inicialmente oculta todas as etapas */
+    display: none; 
     flex-direction: column;
     align-items: center;
 }
 
 .step.active {
-    display: flex; /* Exibe apenas a etapa ativa */
+    display: flex; 
 }
 
 input[type="text"],

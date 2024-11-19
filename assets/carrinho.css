@@ -127,21 +127,18 @@ section {
     top: 100px;
     right: 10px;
     z-index: 10;
-    display: none; /* Inicialmente oculto */
+    display: none; 
 }
 
 #carrinho-lista {
-    list-style: none; /* Remove os marcadores de lista */
-    padding: 0; /* Remove o padding padrão */
-    margin: 0; /* Remove o margin padrão */
+    list-style: none;
+    padding: 0;
+    margin: 0; 
 }
 
-
-
-
 #carrinho-lista li button {
-    margin-left: 10px; /* Espaço entre o botão e o texto */
-    padding: 8px 12px; /* Tamanho confortável para clique */
+    margin-left: 10px; 
+    padding: 8px 12px; 
     font-size: 1rem;
 }
 
@@ -179,38 +176,35 @@ section {
     background-color: #b58b56;
 }
 
-/* Estilo do botão Remover */
 button {
-    background-color: #ff4d4d; /* Cor de fundo vermelha */
-    color: white; /* Cor do texto em branco */
-    border: none; /* Remove a borda padrão */
-    padding: 8px 15px; /* Adiciona padding para o botão */
-    font-size: 14px; /* Ajusta o tamanho da fonte */
-    cursor: pointer; /* Cursor de mãozinha */
-    border-radius: 5px; /* Bordas arredondadas */
-    transition: background-color 0.3s ease, transform 0.2s; /* Animações suaves */
+    background-color: #ff4d4d; 
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    transition: background-color 0.3s ease, transform 0.2s;
     margin-bottom: 20px;;
     margin-top: 10px;
     display: flex;
 }
 
-/* Efeito de hover para o botão */
 button:hover {
-    background-color: #e60000; /* Cor de fundo mais escura ao passar o mouse */
-    transform: scale(1.1); /* Aumenta o botão levemente */
+    background-color: #e60000;
+    transform: scale(1.1); 
 }
 
-/* Efeito de foco no botão */
 button:focus {
-    outline: none; /* Remove a borda padrão */
-    box-shadow: 0 0 5px rgba(255, 77, 77, 0.7); /* Adiciona um destaque leve */
+    outline: none; 
+    box-shadow: 0 0 5px rgba(255, 77, 77, 0.7);
 }
-/* Estilo para os itens do carrinho (opcional) */
+
 #carrinho-lista li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px; /* Adiciona mais espaço entre os itens */
+    margin-bottom: 20px;
     padding: 50px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -218,21 +212,21 @@ button:focus {
 }
 
 .menu .caixa-container .caixa-item .botao {
-    margin-top: 50px; /* Cria espaço entre os botões e os outros elementos */
+    margin-top: 50px;
 }
-/* Media Queries */
+
 @media (max-width: 768px) {
     
 
     #carrinho-lista li {
-        flex-direction: column; /* Faz os itens ficarem em linha */
-        align-items: flex-start; /* Alinha ao lado esquerdo */
+        flex-direction: column; 
+        align-items: flex-start;
         padding: 15px;
     }
 
     #carrinho-lista li button {
-        margin-top: 10px; /* Espaço entre o texto e o botão */
-        align-self: flex-end; /* Alinha o botão à direita */
+        margin-top: 10px; 
+        align-self: flex-end; 
     }
 }
 

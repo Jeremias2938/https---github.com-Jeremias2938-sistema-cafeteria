@@ -19,48 +19,6 @@
 
         <div class="caixa-container">
 
-            <div class="caixa-item">
-                <img src="./assets/img/cafe com leite.jpg" alt="item-1">
-                <h3>Café com Leite</h3>
-                <div class="preco">R$9,99 <span>R$15,99</span></div>
-                <button class="botao add-to-cart" data-id="1" data-nome="Café com Leite" data-preco="9.99">Adicionar Produto</button>
-            </div>
-
-            <div class="caixa-item">
-                <img src="./assets/img/cafe coado.jpg" alt="item-2">
-                <h3>Café coado</h3>
-                <div class="preco">R$7,99 <span>R$13,99</span></div>
-                <button class="botao add-to-cart" data-id="2" data-nome="Café coado" data-preco="7.99">Adicionar Produto</button>
-            </div>
-
-            <div class="caixa-item">
-                <img src="./assets/img/capuccino.jpg" alt="item-3">
-                <h3>Capuccino</h3>
-                <div class="preco">R$10,00 <span>R$17,50</span></div>
-                <button class="botao add-to-cart" data-id="3" data-nome="Capuccino" data-preco="10.00">Adicionar Produto</button>
-            </div>
-
-            <div class="caixa-item">
-                <img src="./assets/img/achocolatado.jpg" alt="item-4">
-                <h3>Achocolatado</h3>
-                <div class="preco">R$10,00 <span>R$14,50</span></div>
-                <button class="botao add-to-cart" data-id="4" data-nome="Achocolatado" data-preco="10.00">Adicionar Produto</button>
-            </div>
-
-            <div class="caixa-item">
-                <img src="./assets/img/esfiha.jpg" alt="item-5">
-                <h3>Esfiha de Carne</h3>
-                <div class="preco">R$5,50 <span>R$9,00</span></div>
-                <button class="botao add-to-cart" data-id="5" data-nome="Esfiha de Carne" data-preco="5.50">Adicionar Produto</button>
-            </div>
-
-            <div class="caixa-item">
-                <img src="./assets/img/coxinha.jpg" alt="item-6">
-                <h3>Coxinha</h3>
-                <div class="preco">R$3,00 <span>R$8,00</span></div>
-                <button class="botao add-to-cart" data-id="6" data-nome="Coxinha" data-preco="3.00">Adicionar Produto</button>
-            </div>
-
         </div>
 
         <div class="total">
@@ -74,13 +32,18 @@
         <div class="carrinho-lateral">
             <h2>Itens no Carrinho</h2>
             <ul id="carrinho-lista">
-                <!-- Itens do carrinho aparecerão aqui -->
+
             </ul>
         </div>
     </div>
     </section>
 
     <script src="./assets/carrinho.js"></script>
-
+    <script src="./assets/usuario.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Usuario.verificarUsuariosAtivos();
+        });
+    </script>
 </body>
 </html>
