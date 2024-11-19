@@ -1,4 +1,4 @@
-// Array para armazenar os produtos
+// Array para armazenar os produtos.
 const produtos = [
     {
         id: 1,
@@ -45,6 +45,7 @@ const produtos = [
 ];
 
 // Função para carregar os produtos na página
+// Função para carregar os produtos na página
 function carregarProdutos() {
     const container = document.querySelector('.caixa-container');
     container.innerHTML = ""; // Limpa o conteúdo antes de adicionar os produtos
@@ -52,31 +53,84 @@ function carregarProdutos() {
     produtos.forEach(produto => {
         const item = document.createElement('div');
         item.classList.add('caixa-item');
+        item.dataset.id = produto.id; // Adiciona o ID como atributo para futuras atualizações
 
         item.innerHTML = `
-            <img src="${produto.imagem}" alt="item-${produto.id}">
+            <img src="${produto.imagem}" alt="${produto.nome}">
             <h3>${produto.nome}</h3>
             <div class="preco">R$${produto.preco.toFixed(2)} <span>R$${produto.precoAntigo.toFixed(2)}</span></div>
-            <a href="carrinho.html" class="botao">Comprar</a>
+            <a href="#" class="botao editar" data-id="${produto.id}">Editar</a>
         `;
 
         container.appendChild(item);
     });
+
+    // Configura o evento para editar produtos
+    document.querySelectorAll('.editar').forEach(botao => {
+        botao.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = e.target.dataset.id;
+            editarProduto(id);
+        });
+    });
 }
 
-// Função para adicionar um novo produto
-function adicionarProduto(nome, preco, precoAntigo, imagem) {
-    const novoProduto = {
-        id: produtos.length + 1,
-        nome: nome,
-        preco: preco,
-        precoAntigo: precoAntigo,
-        imagem: imagem
-    };
+// Função para adicionar ou atualizar produtos
+function salvarProduto(e) {
+    e.preventDefault();
 
-    produtos.push(novoProduto);
-    carregarProdutos(); // Atualiza a lista exibida
+    const nome = document.getElementById('nome').value;
+    const preco = parseFloat(document.getElementById('preco').value);
+    const precoAntigo = parseFloat(document.getElementById('precoAntigo').value);
+    const imagemInput = document.getElementById('imagem');
+    const id = document.getElementById('form-produto').dataset.id;
+
+    let imagemUrl = "";
+    if (imagemInput.files.length > 0) {
+        const file = imagemInput.files[0];
+        imagemUrl = URL.createObjectURL(file); // Gera um URL temporário para a imagem
+    }
+
+    if (id) {
+        // Atualiza o produto existente
+        const produto = produtos.find(p => p.id === parseInt(id));
+        if (produto) {
+            produto.nome = nome;
+            produto.preco = preco;
+            produto.precoAntigo = precoAntigo || produto.precoAntigo;
+            produto.imagem = imagemUrl || produto.imagem; // Mantém a imagem antiga se nenhuma for selecionada
+        }
+    } else {
+        // Adiciona um novo produto
+        const novoProduto = {
+            id: produtos.length + 1,
+            nome,
+            preco,
+            precoAntigo,
+            imagem: imagemUrl
+        };
+        produtos.push(novoProduto);
+    }
+
+    // Limpa o formulário e recarrega os produtos
+    document.getElementById('form-produto').reset();
+    delete document.getElementById('form-produto').dataset.id;
+    carregarProdutos();
+}
+
+// Função para editar um produto
+function editarProduto(id) {
+    const produto = produtos.find(p => p.id === parseInt(id));
+    if (produto) {
+        document.getElementById('nome').value = produto.nome;
+        document.getElementById('preco').value = produto.preco;
+        document.getElementById('precoAntigo').value = produto.precoAntigo;
+        document.getElementById('form-produto').dataset.id = produto.id;
+    }
 }
 
 // Inicializa a lista de produtos na página ao carregar
-document.addEventListener('DOMContentLoaded', carregarProdutos);
+document.addEventListener('DOMContentLoaded', () => {
+    carregarProdutos();
+    document.getElementById('form-produto').addEventListener('submit', salvarProduto);
+});
